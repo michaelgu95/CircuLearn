@@ -1,0 +1,73 @@
+html,body{
+	font-family: Helvetica, Arial, sans-serif;
+	background-color:#000;
+	background:#999 url('bg.jpg') repeat;
+	text-align:center;
+	margin-top:20px;
+	
+} 
+h2{
+	color:#fff;
+}
+h3{
+	color:#ccc;
+}
+.container{
+	padding:4px;
+	display:inline-block;
+	background-color:#fff;
+	width:200px;
+	height:200px;
+	border:1px black solid;
+	border: 1px solid rgb(204, 204, 204);
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 0px 1px 3px rgb(167, 167, 167); 
+}
+.shape{
+	border:2px #fff solid; 
+	background: rgb(240, 240, 240);
+	margin:0px;
+	padding:0px;
+	display:inline-block;
+	box-shadow: 2px 2px 2px rgb(136, 136, 136); 
+	margin:2px;
+}
+.shape:hover{
+	cursor:pointer;
+}
+.selected{
+	background-color:#00cc00;
+	
+}
+.wrong{
+	background-color:#e50000;
+	
+}
+#message{
+	font-size:20px;
+	color:#00cc00;
+	text-align:center;
+	font-style: italic;
+}
+.circle{
+	border-radius:50px;
+}
+.button{
+	width:80px;
+	height:25px;
+	border: 1px solid #bdbdbd;
+    text-shadow: 0 1px 1px white;
+    font: bold 11px sans-serif;
+    padding: 2px 5px 2px 5px;
+    margin: 0 -1px 0 0;
+    vertical-align: middle;
+    overflow: visible;
+    color: #666;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#E0E0E0)); /* Safari 4+, Chrome 2+ */ 
+    background: -webkit-linear-gradient(top, white, #E0E0E0); /* For Safari 5.1 to 6.0 */
+    background:    -moz-linear-gradient(top, white, #E0E0E0); /* For Firefox 3.6 to 15 */
+    background:     -ms-linear-gradient(top, white, #E0E0E0); /* IE10 */ 
+    background:      -o-linear-gradient(top, white, #E0E0E0); /* For Opera 11.1 to 12.0 */
+    filter:     progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='white', endColorstr='#E0E0E0'); /* IE6 & IE7 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='white', endColorstr='#E0E0E0')"; /* IE8 */
+}
