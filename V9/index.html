@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<script src="jBox.min.js"></script>
+	<link href="jBox.css" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="animate.css">
+	<link rel="stylesheet" href="font-awesome-animation.min.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Memory Game</title>
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
+	<script src="main.js" language="javascript" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="slider js/simple-slider.js"></script>
+	<link href="slider css/simple-slider.css" rel="stylesheet" type="text/css" />
+	<link href="slider css/simple-slider-volume.css" rel="stylesheet" type="text/css" /> 
+
+</head>
+<body>
+
+
+<h2 class="animated bounceInLeft">Memory Game</h2>
+<h3 class="animated bounceInUp">Remember the <font color="#00cc00">green</font> circles.</h3>
+<img class="divider" src="divider3.png" height="80" width="600" />
+
+<div class = "settings"> 
+	<input type = "image"  src = "settings.png" height = "50" width = "50"/>
+</div>
+<div class = "timeValue animated zoomIn" style = "display: none">
+<h3>Choose the amount of time per level:</h3>
+<input class = "timeSlider" type="text" data-slider="true" value = "1500" data-slider-range="200,5000" data-slider-theme="volume">
+</div> 
+<br />
+<br />
+<div class="scoretext animated flipInY">Score:</div>	
+<div class="scorecontainer animated flipInX">
+<div class="score animated wobble" id="score">0</div>
+</div>
+<br />
+<div class="livesText animated flipInY">Lives: </div>
+<div id="lives"></div>
+<div class="outline">
+<button class="button" id="reset">Reset</button><br /><br />
+<div class="container">
+<div class="content"></div>		
+<div class="FinishScreen" style="display:none">
+	<h1>Game Over</h1>
+	<button class="button" id="restart">Restart</button>
+</div>
+</div>
+</div>
+
+</body>
+
+</html>
