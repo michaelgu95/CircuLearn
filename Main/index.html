@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Memory Game</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="jBox.css" />
+	<link rel="stylesheet" href="animate.css" />
+	<link rel="stylesheet" href="font-awesome-animation.min.css" />
+	<link rel="stylesheet" href="checkbox.css" />
+	<link rel="stylesheet" href="slider css/simple-slider.css" />
+	<link rel="stylesheet" href="slider css/simple-slider-volume.css" /> 
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
+	<script src="main.js" type="text/javascript"></script>
+	<script src="slider js/simple-slider.js" type="text/javascript"></script>
+	<script src="jBox.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2 class="animated bounceInLeft">CircuLearn</h2>
+<h3 class="animated bounceInUp">Remember the <font color="#00cc00">green</font> circles.</h3>
+<img class="divider" src="divider3.png" height="80" width="600" alt="" />
+<div class="settingsIcon"> 
+	<input type="image" src="settings.png" height="50" width="50" />
+</div>
+<h1 class="settingsText" style="display:none"> Settings</h1>'
+<div id="settings" class="animated zoomIn" style="display: none">
+	<h3>Change the amount of time per level:</h3>
+	<input class="timeSlider" type="text" data-slider="true" value="1500" data-slider-range="200,5000" data-slider-theme="volume" />
+	<h3>Stay on the same level? <input type="checkbox" id="checkSwitch" /><label for="checkSwitch"></label></h3>
+	<h3> Upload your own images here:</h3>
+		<form action="upload.php" method="post">
+			<input type="file"  name="uploadFile">
+			<input class="button" type="submit" value="Upload">
+		</form>
+</div> 
+<br />
+<br />
+<div class="scoretext animated flipInY">Score:</div>	
+<div class="scorecontainer animated flipInX">
+<div class="score animated wobble" id="score">0</div>
+</div>
+<br />
+<div class="livesText animated flipInY">Lives: </div>
+<div id="lives"></div>
+<div class="outline">
+	<div style="display:none" id="resume">
+		The game was paused. Press the button below to resume the game.
+		<br /><br />
+		<button class="button">Resume</button>
+	</div>	
+	<div class="container">
+		<div class="content"></div>	
+		<div class="FinishScreen" style="display:none">
+			<div class="animated rubberBand"><h3 style="color:#000;">Game Over</h3></div>
+			<div id="restart"><button class="button">Restart</button></div>
+			<div class="animated tada"><h3 class="ScoreReminder"></h3></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
