@@ -1,24 +1,18 @@
 var score = 0;
 var lives = new Array();
 var shapeDim = 75;
-
+var startPlaying = false
 var isNextable = true;
 var cols = 2; // starting columns
 var rows = 2; // starting rows
 var timeValue = 1200;
 var settingsShown = false;
-var activated = false;
 
 
 $(document).ready(function() {
     next(cols, rows);
     $('#restart').click(function(){
         location.reload();
-    });
-
-    $('#resume').click(function(){
-        next(cols, rows);
-        $(".container").show();
     });
 
     for(i=0;i<3;i++){
@@ -60,55 +54,51 @@ function next(c, r) {
     if (!isNextable) {
         return;
     }
-     var randomTime = Math.random()*800
+    isNextable = false;
     $("#resume").hide();
     $(".content").fadeOut(1500, function() { // time after every correct answer
         $(".content").empty();
         $(".container").animate({
             height: ((shapeDim + 8) * r) + "px",
             width: ((shapeDim + 8) * c) + "px"
-        }, randomTime, function() {
+        }, 1000, function() {
             for (i = 0; i < (c * r); i++){
                 $(".content").append(createShape("circle", shapeDim));
             }
             $('html, body').animate({ 
-   				scrollTop: $(document).height()-$(window).height()}, "slow" // scroll to bottom after each level
-			);
+                scrollTop: $(document).height()-$(window).height()}, "slow" // scroll to bottom after each level
+            );
             $(".content").fadeIn(500);
-            pickWrongShapes();
             pickRandomShapes();
-            isNextable = false;
         })
     });
 }
 
 function createShape(type, r) {
     return $("<div>").addClass("shape " + type).width(r).height(r).click(function() {
-                
-		if(!activated){
-  				if ($(this).attr("selected") == "selected") {
-                    
-     				
-     				var score = parseInt($("#score").html());
-     				score += 20;
-     				$("#score").html(score); // update the score
-  				} else {
-     				
-     				var score = parseInt($("#score").html());
-     				score -= 10;
-     				$("#score").html(score); // update the score
+        if (startPlaying) {
+            if (!$(this).hasClass('wrong') && !$(this).hasClass('selected')) {
+                if ($(this).attr("selected") == "selected") {
+                    $(this).addClass("selected");
+                    var score = parseInt($("#score").html());
+                    score += 20;
+                    $("#score").html(score); // update the score
+                } else {
+                    $(this).addClass("wrong");
+                    var score = parseInt($("#score").html());
+                    score -= 10;
+                    $("#score").html(score); // update the score
                     lives.splice(-1, 1);
                     $('#lives a').eq(lives.length).remove();
-  				}
-			
+                }
+            }
             if (lives.length <= 0){
                 return endGame(cols, rows);
             }
-        }
-            
-               
-               
-
+            var totalSelected = $(".shape[selected='selected']").length;
+            if (($(".selected").length + $(".wrong").length) >= totalSelected) {
+                startPlaying = false;
+                $(".shape[selected='selected']:not(.selected)").addClass("selected");
                 if ($(".wrong").length == 0) {
                     if((cols+rows)%4 == 0 || (cols+rows)%4 == 1 || (cols+rows)%4 == 2){
                         $(".content").html("<div style = 'position: absolute; left:800px; top: 265px'> <img class = 'animated lightSpeedIn' src = 'nyancat.gif' height = '80' width = '140'> </div>");
@@ -128,9 +118,9 @@ function createShape(type, r) {
                         }
                     }
                 }
-                //next(cols, rows);
-            
-        
+                next(cols, rows);
+            }
+        }
     });
 }
 
@@ -146,29 +136,11 @@ function pickRandomShapes() {
             }
         }
     }
-	
-    
     window.setTimeout(hideRandomSelectedShapes, timeValue);
-    activated = false;
-    next(cols,rows)
-}
-
-function pickWrongShapes() {
-//Display red circles before selection 
-    var count = Math.ceil(Math.random()*(rows*cols))
-    //var length = $(".content > .shape").length;
-    for(i=0; i < count; i++)
-    {
-        if (!$(".content > .shape").eq(count).hasClass("selected")) 
-        {
-                $(".content > .shape").eq(count).addClass("wrong").attr("wrong", "wrong");
-        }
-    }
 }
 
 function hideRandomSelectedShapes() {
         $(".content > .shape").removeClass("selected");
-        $(".content > .shape").removeClass("wrong");
-        
+        startPlaying = true;
         isNextable = true;
 }
