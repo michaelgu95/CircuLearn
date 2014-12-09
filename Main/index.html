@@ -19,19 +19,23 @@
 <h2 class="animated bounceInLeft">CircuLearn</h2>
 <h3 class="animated bounceInUp">Remember the <font color="#00cc00">green</font> circles.</h3>
 <img class="divider" src="divider3.png" height="80" width="600" alt="" />
+
 <div class="settingsIcon"> 
 	<input type="image" src="settings.png" height="50" width="50" />
 </div>
-<h1 class="settingsText" style="display:none"> Settings</h1>'
-<div id="settings" class="animated zoomIn" style="display: none">
+<div  id="eyeGaze"> 
+	<input type ="image" src="eyegaze.png" height="80" width="80" />
+</div>	
+<h1 class = "settingsText" style = "display:none"> Settings</h1>'
+<div id="settings" class = "animated zoomIn" style="display: none">
 	<h3>Change the amount of time per level:</h3>
 	<input class="timeSlider" type="text" data-slider="true" value="1500" data-slider-range="200,5000" data-slider-theme="volume" />
 	<h3>Stay on the same level? <input type="checkbox" id="checkSwitch" /><label for="checkSwitch"></label></h3>
-	<h3> Upload your own images here:</h3>
-		<form action="upload.php" method="post">
-			<input type="file"  name="uploadFile">
-			<input class="button" type="submit" value="Upload">
-		</form>
+	<form enctype="multipart/form-data" action="upload.php" method="post">
+    		<input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+    		Choose a file to upload: <input name="uploaded_file" type="file" />
+   		<input type="submit" value="Upload" />
+  	</form> 
 </div> 
 <br />
 <br />
@@ -40,22 +44,37 @@
 <div class="score animated wobble" id="score">0</div>
 </div>
 <br />
-<div class="livesText animated flipInY">Lives: </div>
+<div class="livesText animated flipInY">Lives:</div>
 <div id="lives"></div>
+<br />
+<div class="livesText animated flipInY">Color:</div>
+<br  />
+<select>
+  <option value="blue">Blue</option>
+  <option value="black">Black</option>
+  <option value="gray">Gray</option>
+  <option value="green" selected>Green (Default)</option>
+  <option value="pink">Pink</option>
+  <option value="yellow">Yellow</option>
+</select>
+<br /><br />
 <div class="outline">
-	<div style="display:none" id="resume">
-		The game was paused. Press the button below to resume the game.
-		<br /><br />
-		<button class="button">Resume</button>
-	</div>	
+	<div style = "display:none" id="resume"> <button>Resume Game</button></div>	
 	<div class="container">
-		<div class="content"></div>	
+		<div class="content"></div>
 		<div class="FinishScreen" style="display:none">
-			<div class="animated rubberBand"><h3 style="color:#000;">Game Over</h3></div>
-			<div id="restart"><button class="button">Restart</button></div>
-			<div class="animated tada"><h3 class="ScoreReminder"></h3></div>
+			<div class = "animated rubberBand"><h1>Game Over</h1></div>
+			<div style = "display:none"  id="restart"> <button  >Restart</button></div>
+			<div class = "animated tada"><h3 class = "ScoreReminder"></h3></div>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+$(function(){
+    $('select').change(function() {
+        $('head').append('<link rel="stylesheet" href="stylesheets/' + $(this).val() + '.css" />') ;
+    });
+});
+</script>
 </body>
 </html>

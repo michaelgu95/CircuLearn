@@ -15,6 +15,17 @@ $(document).ready(function() {
         location.reload();
     });
 
+    $('#resume').click(function(){
+        startPlaying = false;
+        next(cols, rows);
+        $(".container").show();
+    });
+
+    $('#eyeGaze').click(function(){
+        shapeDim = 175;
+
+    })
+
     for(i=0;i<3;i++){
         lives[i] = new Image();
         lives[i].src = 'life.png';
@@ -22,6 +33,7 @@ $(document).ready(function() {
             html: $("<img>", { src: lives[i].src, height: 30, width: 30, class: 'animated rollIn' })
         }));
     }
+
 
     $('.settingsIcon').click(function() {
                 $(".container").hide();
@@ -66,32 +78,35 @@ function next(c, r) {
                 $(".content").append(createShape("circle", shapeDim));
             }
             $('html, body').animate({ 
-                scrollTop: $(document).height()-$(window).height()}, "slow" // scroll to bottom after each level
-            );
+   				scrollTop: $(document).height()-$(window).height()}, "slow" // scroll to bottom after each level
+			);
             $(".content").fadeIn(500);
             pickRandomShapes();
+            //showContent();
         })
     });
 }
 
+
+
 function createShape(type, r) {
     return $("<div>").addClass("shape " + type).width(r).height(r).click(function() {
         if (startPlaying) {
-            if (!$(this).hasClass('wrong') && !$(this).hasClass('selected')) {
-                if ($(this).attr("selected") == "selected") {
-                    $(this).addClass("selected");
-                    var score = parseInt($("#score").html());
-                    score += 20;
-                    $("#score").html(score); // update the score
-                } else {
-                    $(this).addClass("wrong");
-                    var score = parseInt($("#score").html());
-                    score -= 10;
-                    $("#score").html(score); // update the score
+			if (!$(this).hasClass('wrong') && !$(this).hasClass('selected')) {
+  				if ($(this).attr("selected") == "selected") {
+     				$(this).addClass("selected");
+     				var score = parseInt($("#score").html());
+     				score += 20;
+     				$("#score").html(score); // update the score
+  				} else {
+     				$(this).addClass("wrong");
+     				var score = parseInt($("#score").html());
+     				score -= 10;
+     				$("#score").html(score); // update the score
                     lives.splice(-1, 1);
                     $('#lives a').eq(lives.length).remove();
-                }
-            }
+  				}
+			}
             if (lives.length <= 0){
                 return endGame(cols, rows);
             }
@@ -101,9 +116,15 @@ function createShape(type, r) {
                 $(".shape[selected='selected']:not(.selected)").addClass("selected");
                 if ($(".wrong").length == 0) {
                     if((cols+rows)%4 == 0 || (cols+rows)%4 == 1 || (cols+rows)%4 == 2){
-                        $(".content").html("<div style = 'position: absolute; left:800px; top: 265px'> <img class = 'animated lightSpeedIn' src = 'nyancat.gif' height = '80' width = '140'> </div>");
+                        $(".content").html("\
+                            <div style = 'position: absolute; left:750px; top: 265px'> <img class='animated lightSpeedIn' src='nyancat.gif' height='80' width='140'></div>\
+                            <audio src = 'sounds/1-up.mp3' type = 'audio/mpeg' autoplay></audio>\
+                            <audio src = 'sounds/1-up.ogg' type = 'audio/ogg' autoplay></audio>");
                     } else if((cols+rows)%4 == 3 && !$('#checkSwitch').is(':checked')){
-                       $(".content").html("<div style = 'position: absolute; left: 785px; top: 280px'> <img class = 'animated wobble' src = '1up.png' height = '50' width = '50'> </div>");                    
+                       $(".content").html("\
+                            <div style = 'position: absolute; left: 785px; top: 280px'> <img class='animated wobble' src='1up.png' height='50' width='50'></div>\
+                            <audio src='sounds/coin.mp3' type='audio/mpeg' autoplay></audio>\
+                            <audio src='sounds/coin.ogg' type='audio/ogg' autoplay></audio>");                    
                        lives.splice(lives.length, 0, 1);
                        $("#lives").append($("<a>", {
                          html: $("<img>", { src: 'life.png', height: 30, width: 30, class: 'animated zoomIn' })
@@ -140,7 +161,9 @@ function pickRandomShapes() {
 }
 
 function hideRandomSelectedShapes() {
+    
         $(".content > .shape").removeClass("selected");
         startPlaying = true;
         isNextable = true;
+    
 }

@@ -20,9 +20,11 @@ h3{
 	color:#6699ff;
 	padding:5px;
 }
+
 .ScoreReminder {
 	margin-bottom: 500px;
 }
+
 .settingsText{
 	color:#fff;
 	margin: 2%;
@@ -31,11 +33,18 @@ h3{
 	font-size:2.5em;
 	font-weight: bold;
 	font-family: avenir;
+
 }
 .settingsIcon{
 	margin-right: 500px;
+	margin-bottom: -45px;
+}
+
+#eyeGaze {
+	margin-left: 500px;
 	margin-bottom: -65px;
 }
+
 .timeSlider{
 	padding-right: 500px;
 }
@@ -113,11 +122,6 @@ h3{
 .wrong{
 	background-color:#E6332C;
 }
-
-.doge{
-	background:url('doge.jpg');
-}
-
 #message{
 	font-size:50px;
 	text-shadow: 2px 2px 2px #000000;
@@ -125,7 +129,7 @@ h3{
 	text-align:center;	
 }
 .circle{
-	border-radius:50px;
+	border-radius:5000px;
 }
 .button{
 	width:80px;
